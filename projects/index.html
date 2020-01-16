@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- Note there is no responsive meta tag here -->
+
+        <title>brooks paige &#58;&#58; UCL machine learning</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="/css/non-responsive.css" rel="stylesheet">
+
+        <style>
+        .light { font-weight: 200; }
+        h4 { font-size: 21px; margin-top: 1.1em; }
+        .jumbotron { background-color: #DEF; }
+        </style>
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+    </head>
+
+    <body>
+
+    <div class="container">
+
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+
+      <h1 id="potential-msc-project-topics">Potential MSc project topics</h1>
+
+      <p><a href="../">Back to main page</a></p>
+
+      <p>If you are a current MSc student at UCL, please email me at <a href="mailto:b.paige@ucl.ac.uk">b.paige@ucl.ac.uk</a> if you are interested in working on the following projects, or would like to discuss some alternative (ideally, something related to one of my <a href="https://scholar.google.com/citations?user=JrFJmx0AAAAJ">publications</a>).</p>
+
+      <h3 id="machine-learning-for-programming-by-example">Machine learning for “programming by example”</h3>
+
+      <p><em>Programming by example</em> is the problem of synthesizing a program from a small set of input / output pairs.
+The setting in [1] defines a domain-specific language (DSL) for specifying operations on lists of integers, and then tries to find programs consistent with examples by using heuristic search algorithms.
+Open challenges include identifying a best choice of search algorithm, as well as defining an appropriate heuristic.
+This heuristic can be learned from synthetic datasets; [2] describes methods for generating this data, and provides code and an interpreter that can form a starting point for exploring different search algorithms.</p>
+
+      <p>Prerequisites for this project are: python programming experience, familiarity with at least one deep learning framework.</p>
+
+      <p>[1] DeepCoder: Learning to Write Programs. <a href="https://arxiv.org/abs/1611.01989">https://arxiv.org/abs/1611.01989</a><br />
+[2] Data Generation for Neural Programming by Example. <a href="https://arxiv.org/abs/1911.02624">https://arxiv.org/abs/1911.02624</a></p>
+
+      <h3 id="representation-learning-for-molecules">Representation learning for molecules</h3>
+
+      <p>Finding molecules with desired properities is challenging, as the “chemical space” of potential small molecules is enormous, and as small perturbations in the structure of a molecule can have a large effect on its properties.
+One approach is to learn a continuous representation, through autoencoder-style models [1],
+and then perform the optimization in the continuous space.
+Better deep generative models (e.g. [2,3]) can then lead to higher-quality representations, which in turn help with optimization tasks.
+There are a few project ideas along these lines, including comparing the autoencoder-based methods to “direct” Bayesian optimization approaches like recently proposed in [4],
+and exploring the use of recently-proposed discrete flows [5] for learning invertible representations.</p>
+
+      <p>Prerequisites: python / deep learning / variational inference familiarity, but not necessarily chemistry familiarity.</p>
+
+      <p>[1] Automatic Chemical Design Using a Data-Driven Continuous Representation of Molecules <a href="https://pubs.acs.org/doi/abs/10.1021/acscentsci.7b00572">https://pubs.acs.org/doi/abs/10.1021/acscentsci.7b00572</a><br />
+[2] Grammar variational autoencoder. <a href="http://proceedings.mlr.press/v70/kusner17a.html">http://proceedings.mlr.press/v70/kusner17a.html</a><br />
+[3] A model to search for synthesizable molecules. <a href="http://papers.nips.cc/paper/9007-a-model-to-search-for-synthesizable-molecules">http://papers.nips.cc/paper/9007-a-model-to-search-for-synthesizable-molecules</a><br />
+[4] ChemBO: Bayesian Optimization of Small Organic Molecules with Synthesizable Recommendations. <a href="https://arxiv.org/abs/1908.01425">https://arxiv.org/abs/1908.01425</a><br />
+[5] Discrete Flows: Invertible Generative Models of Discrete Data <a href="https://arxiv.org/abs/1905.10347">https://arxiv.org/abs/1905.10347</a></p>
+
+      <h3 id="structured-bayesian-optimization-with-probabilistic-programs">Structured Bayesian optimization with probabilistic programs</h3>
+
+      <p>Bayesian optimization (e.g., [1]) offers a data-efficient approach to global optimization of black-box functions by building a model of the unknown function, inculding our uncertainty about its values we have yet to observe.
+[2] introduces a general framework for performing structured Bayesian optimization,
+where a probabilistic programming language provides a flexible means for defining surrogate models
+that can incorporate prior knowledge of structure in the underlying problem.
+The goal of this project is to revisit this methodology using Pyro [3] as a language for defining these models,
+(i) exploring to what extent automatic inference and automatic acquisition function can be used in a generatic library for Bayesian optimization, and 
+(ii) to what extent probabilistic programs in Pyro that are customized to particular targets can accelerate optimization.
+<!-- and investigate the use of stochastic variational inference for posterior estimation and stochastic gradient descent for acquisition function optimization.-->
+This project will involve contributing to Pyro, an open-source probabilistic programming language based on PyTorch, in conjunction with collaborators at the Turing and Cambridge [4].</p>
+
+      <p>Prerequisites: a familiarity with Python and PyTorch, and ideally also with the basics of variational inference.</p>
+
+      <p>[1] Practical Bayesian Optimization of Machine Learning Algorithms <a href="https://arxiv.org/abs/1206.2944">https://arxiv.org/abs/1206.2944</a><br />
+[2] BOAT: Building Auto-Tuners with Structured Bayesian Optimization. <a href="https://www.cl.cam.ac.uk/~ey204/teaching/ACS/R244_2018_2019/papers/dalibard_WWW_2017.pdf">https://www.cl.cam.ac.uk/~ey204/teaching/ACS/R244_2018_2019/papers/dalibard_WWW_2017.pdf</a><br />
+[3] Pyro. <a href="http://pyro.ai">http://pyro.ai</a><br />
+[4] Performance tuning of systems. <a href="https://www.turing.ac.uk/research/research-projects/performance-tuning-systems">https://www.turing.ac.uk/research/research-projects/performance-tuning-systems</a></p>
+
+    </div>
+  </div>
+
+</div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-50547851-1', 'ox.ac.uk');
+      ga('send', 'pageview');
+
+    </script>
+    </body>
+</html>
