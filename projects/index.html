@@ -46,7 +46,7 @@
 
       <p>If you are a current MSc student at UCL, please email me at <a href="mailto:b.paige@ucl.ac.uk">b.paige@ucl.ac.uk</a> if you are interested in working on the following projects, or would like to discuss some alternative (ideally, something related to one of my <a href="https://scholar.google.com/citations?user=JrFJmx0AAAAJ">publications</a>).</p>
 
-      <h3 id="machine-learning-for-programming-by-example">Machine learning for “programming by example”</h3>
+      <h2 id="machine-learning-for-programming-by-example">Machine learning for “programming by example”</h2>
 
       <p><em>Programming by example</em> is the problem of synthesizing a program from a small set of input / output pairs.
 The setting in [1] defines a domain-specific language (DSL) for specifying operations on lists of integers, and then tries to find programs consistent with examples by using heuristic search algorithms.
@@ -58,7 +58,7 @@ This heuristic can be learned from synthetic datasets; [2] describes methods for
       <p>[1] DeepCoder: Learning to Write Programs. <a href="https://arxiv.org/abs/1611.01989">https://arxiv.org/abs/1611.01989</a><br />
 [2] Data Generation for Neural Programming by Example. <a href="https://arxiv.org/abs/1911.02624">https://arxiv.org/abs/1911.02624</a></p>
 
-      <h3 id="representation-learning-for-molecules">Representation learning for molecules</h3>
+      <h2 id="representation-learning-for-molecules">Representation learning for molecules</h2>
 
       <p>Finding molecules with desired properities is challenging, as the “chemical space” of potential small molecules is enormous, and as small perturbations in the structure of a molecule can have a large effect on its properties.
 One approach is to learn a continuous representation, through autoencoder-style models [1],
@@ -69,13 +69,38 @@ and exploring the use of recently-proposed discrete flows [5] for learning inver
 
       <p>Prerequisites: python / deep learning / variational inference familiarity, but not necessarily chemistry familiarity.</p>
 
+      <p>Here are two related specific project ideas:</p>
+
+      <h4 id="meta-learning-for-few-shot-molecular-property-prediction">Meta learning for few-shot molecular property prediction</h4>
+
+      <p>Learning a quantitative structure-activity relationship (QSAR) entails fitting a regression model which takes a molecule as its input and predicts a value of some molecular property.
+Traditionally, these methods are based on using molecular “fingerprints”, a vector representation which encodes whether particular structures are present in a molecule, as an input to a regression model such as a neural network or a random forest.
+Recent work in neural network models for graphs (e.g. [6,7]) have been shown to learn task-specific representations which can perform much better than particular “generic” fingerprints.
+However, it’s not obvious whether or not these are easily re-usable fingerprints in cases where not much data is available.
+This project proposes exploring model-agnostic meta-learning [8] across multiple tasks to learn graph neural networks which are designed to be easily fine-tuned (i.e. for few-shot learning) on a particular task.
+This could be of large practical importance, as training data for many molecular properties might be quite expensive to collect.</p>
+
+      <h4 id="bayesian-graph-neural-networks-for-out-of-distribution-detection">Bayesian graph neural networks for out-of-distribution detection</h4>
+
+      <p>Bayesian neural networks provide an approach to learning deep networks which can “know what they don’t know” [9].
+This is important if test data may differ from data used at train time – we do not want overconfident predictions on data which does not resemble that used for fitting the model!
+There has been a lot of recent work on methods for Bayesian neural networks (see e.g. the recent workshop <a href="http://bayesiandeeplearning.org">http://bayesiandeeplearning.org</a>), but very few specifically looking at structured data.
+The goal of this project would be to investigate how well existing methods for Bayesian deep learning can be adapted to graph neural networks.
+A starting point would be to explore generally applicable variational inference and Hamiltonian Monte Carlo, and ensembling approaches on diverse datasets for molecules (e.g., one dataset of drug-like molecules as compared to another dataset of candidate organic photovoltaics).
+This will likely end with identifying a potentially novel approach which is tailored to graph convolutions.
+This can also be explored on other graph-structured data (e.g. social networks).</p>
+
       <p>[1] Automatic Chemical Design Using a Data-Driven Continuous Representation of Molecules <a href="https://pubs.acs.org/doi/abs/10.1021/acscentsci.7b00572">https://pubs.acs.org/doi/abs/10.1021/acscentsci.7b00572</a><br />
 [2] Grammar variational autoencoder. <a href="http://proceedings.mlr.press/v70/kusner17a.html">http://proceedings.mlr.press/v70/kusner17a.html</a><br />
 [3] A model to search for synthesizable molecules. <a href="http://papers.nips.cc/paper/9007-a-model-to-search-for-synthesizable-molecules">http://papers.nips.cc/paper/9007-a-model-to-search-for-synthesizable-molecules</a><br />
 [4] ChemBO: Bayesian Optimization of Small Organic Molecules with Synthesizable Recommendations. <a href="https://arxiv.org/abs/1908.01425">https://arxiv.org/abs/1908.01425</a><br />
-[5] Discrete Flows: Invertible Generative Models of Discrete Data <a href="https://arxiv.org/abs/1905.10347">https://arxiv.org/abs/1905.10347</a></p>
+[5] Discrete Flows: Invertible Generative Models of Discrete Data <a href="https://arxiv.org/abs/1905.10347">https://arxiv.org/abs/1905.10347</a><br />
+[6] Convolutional Networks on Graphs for Learning Molecular Fingerprints <a href="http://papers.nips.cc/paper/5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints">http://papers.nips.cc/paper/5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints</a><br />
+[7] Neural message passing for quantum chemistry <a href="http://proceedings.mlr.press/v70/gilmer17a.html">http://proceedings.mlr.press/v70/gilmer17a.html</a><br />
+[8] Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks <a href="http://proceedings.mlr.press/v70/finn17a">http://proceedings.mlr.press/v70/finn17a</a><br />
+[9] Understanding Measures of Uncertainty for Adversarial Example Detection <a href="https://arxiv.org/abs/1803.08533">https://arxiv.org/abs/1803.08533</a></p>
 
-      <h3 id="structured-bayesian-optimization-with-probabilistic-programs">Structured Bayesian optimization with probabilistic programs</h3>
+      <h2 id="structured-bayesian-optimization-with-probabilistic-programs">Structured Bayesian optimization with probabilistic programs</h2>
 
       <p>Bayesian optimization (e.g., [1]) offers a data-efficient approach to global optimization of black-box functions by building a model of the unknown function, inculding our uncertainty about its values we have yet to observe.
 [2] introduces a general framework for performing structured Bayesian optimization,
