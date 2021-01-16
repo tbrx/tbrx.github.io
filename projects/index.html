@@ -46,67 +46,63 @@
 
       <p>If you are a current MSc student at UCL, please email me at <a href="mailto:b.paige@ucl.ac.uk">b.paige@ucl.ac.uk</a> if you are interested in working on the following projects, or would like to discuss some alternative (ideally, something related to one of my <a href="https://scholar.google.com/citations?user=JrFJmx0AAAAJ">publications</a>).</p>
 
-      <h2 id="machine-learning-for-programming-by-example">Machine learning for “programming by example”</h2>
+      <h2 id="generating-high-resolution-images-with-coordinate-based-neural-networks">Generating high-resolution images with coordinate-based neural networks</h2>
 
-      <p><em>Programming by example</em> is the problem of synthesizing a program from a small set of input / output pairs.
-The setting in [1] defines a domain-specific language (DSL) for specifying operations on lists of integers, and then tries to find programs consistent with examples by using heuristic search algorithms.
-Open challenges include identifying a best choice of search algorithm, as well as defining an appropriate heuristic.
-This heuristic can be learned from synthetic datasets; [2] describes methods for generating this data, and provides code and an interpreter that can form a starting point for exploring different search algorithms.</p>
+      <p>Most deep generative models for images model individual pixels. In contrast, coordinate-based networks learn a function f(i,j) -&gt; x_{i,j}, which maps directly from <em>pixel indices</em> i, j to the color value of the image at that location. These approaches are particular interesting because they can be evaluated at fractional coordinates for arbitrarily high resolutions! For two interesting artistic examples of this, see [1] and [2].</p>
 
-      <p>Prerequisites for this project are: python programming experience, familiarity with at least one deep learning framework.</p>
+      <p>Recent work [3] introduces a positional encoding scheme using Fourier features which seems to be able to capture high-frequency information accurately, leading to high-resolution photorealistic reconstructions of images.</p>
 
-      <p>[1] DeepCoder: Learning to Write Programs. <a href="https://arxiv.org/abs/1611.01989">https://arxiv.org/abs/1611.01989</a><br />
-[2] Data Generation for Neural Programming by Example. <a href="https://arxiv.org/abs/1911.02624">https://arxiv.org/abs/1911.02624</a></p>
+      <p>However, these models are still fit to only a single image! Naively, each image is encoded by a separate function, i.e. by a separate network. The goal of this project is to explore ways of developing these coordinate-based networks into generative models that can produce a range of images, without sacrificing image quality. There are a few options here: one is to consider a latent variable model, e.g. [4], as a way of introducing an additional “context” vector beyond the i, j coordinates into the network; another is to consider explicitly learning distributions over network weights, or even other deep networks which output network weights of the coordinate-based network (as in [5]).</p>
 
-      <h2 id="representation-learning-for-molecules">Representation learning for molecules</h2>
+      <p>[1] <a href="https://blog.otoro.net/2016/03/25/generating-abstract-patterns-with-tensorflow/">https://blog.otoro.net/2016/03/25/generating-abstract-patterns-with-tensorflow/</a></p>
 
-      <p>Finding molecules with desired properities is challenging, as the “chemical space” of potential small molecules is enormous, and as small perturbations in the structure of a molecule can have a large effect on its properties.
-One approach is to learn a continuous representation, through autoencoder-style models [1],
-and then perform the optimization in the continuous space.
-Better deep generative models (e.g. [2,3]) can then lead to higher-quality representations, which in turn help with optimization tasks.
-There are a few project ideas along these lines, including comparing the autoencoder-based methods to “direct” Bayesian optimization approaches like recently proposed in [4],
-and exploring the use of recently-proposed discrete flows [5] for learning invertible representations.</p>
+      <p>[2] <a href="https://blog.otoro.net/2016/04/01/generating-large-images-from-latent-vectors/">https://blog.otoro.net/2016/04/01/generating-large-images-from-latent-vectors/</a></p>
 
-      <p>Prerequisites: python / deep learning / variational inference familiarity, but not necessarily chemistry familiarity.</p>
+      <p>[3] Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains, <a href="https://proceedings.neurips.cc/paper/2020/hash/55053683268957697aa39fba6f231c68-Abstract.html">https://proceedings.neurips.cc/paper/2020/hash/55053683268957697aa39fba6f231c68-Abstract.html</a></p>
 
-      <p>Here’s one related specific project idea:</p>
+      <p>[4] Auto-encoding variational Bayes, <a href="https://arxiv.org/abs/1312.6114v10">https://arxiv.org/abs/1312.6114v10</a></p>
 
-      <h4 id="meta-learning-for-few-shot-molecular-property-prediction">Meta learning for few-shot molecular property prediction</h4>
+      <p>[5] Hypernetworks, <a href="https://arxiv.org/abs/1609.09106">https://arxiv.org/abs/1609.09106</a></p>
 
-      <p>Learning a quantitative structure-activity relationship (QSAR) entails fitting a regression model which takes a molecule as its input and predicts a value of some molecular property.
-Traditionally, these methods are based on using molecular “fingerprints”, a vector representation which encodes whether particular structures are present in a molecule, as an input to a regression model such as a neural network or a random forest.
-Recent work in neural network models for graphs (e.g. [6,7]) have been shown to learn task-specific representations which can perform much better than particular “generic” fingerprints.
-However, it’s not obvious whether or not these are easily re-usable fingerprints in cases where not much data is available.
-This project proposes exploring model-agnostic meta-learning [8] across multiple tasks to learn graph neural networks which are designed to be easily fine-tuned (i.e. for few-shot learning) on a particular task.
-This could be of large practical importance, as training data for many molecular properties might be quite expensive to collect.</p>
+      <h2 id="stochastic-normalizing-flows">Stochastic normalizing flows</h2>
 
-      <p>[1] Automatic Chemical Design Using a Data-Driven Continuous Representation of Molecules <a href="https://pubs.acs.org/doi/abs/10.1021/acscentsci.7b00572">https://pubs.acs.org/doi/abs/10.1021/acscentsci.7b00572</a><br />
-[2] Grammar variational autoencoder. <a href="http://proceedings.mlr.press/v70/kusner17a.html">http://proceedings.mlr.press/v70/kusner17a.html</a><br />
-[3] A model to search for synthesizable molecules. <a href="http://papers.nips.cc/paper/9007-a-model-to-search-for-synthesizable-molecules">http://papers.nips.cc/paper/9007-a-model-to-search-for-synthesizable-molecules</a><br />
-[4] ChemBO: Bayesian Optimization of Small Organic Molecules with Synthesizable Recommendations. <a href="https://arxiv.org/abs/1908.01425">https://arxiv.org/abs/1908.01425</a><br />
-[5] Discrete Flows: Invertible Generative Models of Discrete Data <a href="https://arxiv.org/abs/1905.10347">https://arxiv.org/abs/1905.10347</a><br />
-[6] Convolutional Networks on Graphs for Learning Molecular Fingerprints <a href="http://papers.nips.cc/paper/5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints">http://papers.nips.cc/paper/5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints</a><br />
-[7] Neural message passing for quantum chemistry <a href="http://proceedings.mlr.press/v70/gilmer17a.html">http://proceedings.mlr.press/v70/gilmer17a.html</a><br />
-[8] Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks <a href="http://proceedings.mlr.press/v70/finn17a">http://proceedings.mlr.press/v70/finn17a</a></p>
+      <p>Normalizing flows (see review paper [1]) provide a flexible means for defining complex density functions. They take a simple base distribution p(z) and transform it to a more expressive density p(x), by way of a bijective (invertible) deterministic function x = f(z) and making use of the change-of-variables formula.
+However, the restriction to <em>deterministic</em> functions reduces the expressivity. One proposal is to replace it with a stochastic function.</p>
 
-      <h2 id="structured-bayesian-optimization-with-probabilistic-programs">Structured Bayesian optimization with probabilistic programs</h2>
+      <p>Two recent quite different papers both consider extensions with stochastic transformations. One considers instead surjective functions, focusing on generative modeling from data, and makes analogies to variational autoencoders [2]. The other aims to learning samplers for unnormalized probability distributions, and works by explicitly introducing Metropolis-Hastings steps into the flow [3]. A goal of this project is to better understand these normalizing flow variants, exploring their modeling capabilities with different choices of deterministic and stochastic functions.</p>
 
-      <p>Bayesian optimization (e.g., [1]) offers a data-efficient approach to global optimization of black-box functions by building a model of the unknown function, inculding our uncertainty about its values we have yet to observe.
-[2] introduces a general framework for performing structured Bayesian optimization,
-where a probabilistic programming language provides a flexible means for defining surrogate models
-that can incorporate prior knowledge of structure in the underlying problem.
-The goal of this project is to revisit this methodology using Pyro [3] as a language for defining these models,
-(i) exploring to what extent automatic inference and automatic acquisition function can be used in a generatic library for Bayesian optimization, and 
-(ii) to what extent probabilistic programs in Pyro that are customized to particular targets can accelerate optimization.
-<!-- and investigate the use of stochastic variational inference for posterior estimation and stochastic gradient descent for acquisition function optimization.-->
-This project will involve contributing to Pyro, an open-source probabilistic programming language based on PyTorch, in conjunction with collaborators at the Turing and Cambridge [4].</p>
+      <p>We can then explore other potentially novel approaches to constructing stochastic flows. One potential option could be to consider a Bayesian treatment of parameters in a deterministic normalizing flow.</p>
 
-      <p>Prerequisites: a familiarity with Python and PyTorch, and ideally also with the basics of variational inference.</p>
+      <p>[1] Normalizing Flows for Probabilistic Modeling and Inference, <a href="https://arxiv.org/abs/1912.02762">https://arxiv.org/abs/1912.02762</a></p>
 
-      <p>[1] Practical Bayesian Optimization of Machine Learning Algorithms <a href="https://arxiv.org/abs/1206.2944">https://arxiv.org/abs/1206.2944</a><br />
-[2] BOAT: Building Auto-Tuners with Structured Bayesian Optimization. <a href="https://www.cl.cam.ac.uk/~ey204/teaching/ACS/R244_2018_2019/papers/dalibard_WWW_2017.pdf">https://www.cl.cam.ac.uk/~ey204/teaching/ACS/R244_2018_2019/papers/dalibard_WWW_2017.pdf</a><br />
-[3] Pyro. <a href="http://pyro.ai">http://pyro.ai</a><br />
-[4] Performance tuning of systems. <a href="https://www.turing.ac.uk/research/research-projects/performance-tuning-systems">https://www.turing.ac.uk/research/research-projects/performance-tuning-systems</a></p>
+      <p>[2] SurVAE Flows: Surjections to Bridge the Gap between VAEs and Flows, <a href="https://proceedings.neurips.cc/paper/2020/hash/9578a63fbe545bd82cc5bbe749636af1-Abstract.html">https://proceedings.neurips.cc/paper/2020/hash/9578a63fbe545bd82cc5bbe749636af1-Abstract.html</a></p>
+
+      <p>[3] Stochastic Normalizing Flows, <a href="https://proceedings.neurips.cc/paper/2020/hash/9578a63fbe545bd82cc5bbe749636af1-Abstract.html">https://proceedings.neurips.cc/paper/2020/hash/9578a63fbe545bd82cc5bbe749636af1-Abstract.html</a></p>
+
+      <h2 id="deep-neural-networks-for-the-schrodinger-equation">Deep Neural Networks for the Schrodinger Equation</h2>
+
+      <p><em>[Co-supervised with Andrea Karlova]</em></p>
+
+      <p>The Schrodinger Equation provides an elegant description of the positions of the electrons in the molecular structures. Despite the fact that the equation has been known for nearly a century, providing the solution, which accurately characterises the wave functions, has remained a challenging task.</p>
+
+      <p>Various numerical approaches have been developed, such as Density Functional Theory, Quantum Monte Carlo, Moller-Plesset Perturbation Theory among others. The computational complexity of the methods varies by a polynomial
+order for a fixed number of electrons in the chemical system with DFT being amongst the fastest having a cubic computational complexity. With an increasing number of the electrons in the atomic structure, the computational complexity becomes in the worst-case
+exponential, making it computationally demanding for investigating chemical systems with heavy elements or chemical systems with a large number of electrons. The ability to improve the computational complexity of these algorithms can significantly speed up
+the discovery of new materials or new drugs.</p>
+
+      <p>Recently, deep neural networks have been used as functional approximators of the solution of the Schrodinger Equation. Two different neural architectures, PauliNet [1] and FermiNet [2], can be used for approximating the
+wave functions ansatz. Combining them with variational quantum Monte Carlo approximation of the energy function, yields a simulation technique which allows for training such a deep network without the requirement of labelled training data. Recently, [3] improved
+performance of FermiNet by simplifying the architecture of the neural net and provided a comparison with PauliNet. The goal of this project is to experiment with different neural architectures approximating the ansatz and approximations of the energy functions via different simulation techniques and compare them with DFT solutions.</p>
+
+      <p>[1] Hermann,
+J., Schätzle, Z. &amp; Noé, F. Deep-neural-network solution of the electronic Schrödinger equation. Nat. Chem. 12, 891–897
+(2020). <a href="https://doi.org/10.1038/s41557-020-0544-y">https://doi.org/10.1038/s41557-020-0544-y</a></p>
+
+      <p>[2] David
+Pfau, James S. Spencer, Alexander G. D. G. Matthews, and W. M. C. Foulkes, Ab inition solution of the many-electron Schrodinger equation with deep neural networks, Phys. Rev. Research 2, <a href="https://arxiv.org/abs/1909.02487">https://arxiv.org/abs/1909.02487</a></p>
+
+      <p>[3] James
+S. Spencer et all., Better, faster Fermionic Neural Networks, <a href="https://arxiv.org/abs/2011.07125">https://arxiv.org/abs/2011.07125</a></p>
 
     </div>
   </div>
