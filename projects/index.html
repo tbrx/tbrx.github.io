@@ -46,6 +46,24 @@
 
       <p>If you are a current MSc student at UCL, please email me at <a href="mailto:b.paige@ucl.ac.uk">b.paige@ucl.ac.uk</a> if you are interested in working on the following projects, or would like to discuss some alternative (ideally, something related to one of my <a href="https://scholar.google.com/citations?user=JrFJmx0AAAAJ">publications</a>).</p>
 
+      <h2 id="blind-and-not-so-blind-source-separation">Blind and (not-so-blind) source separation</h2>
+
+      <p>The blind source separation problem (or “cocktail party problem”) involves decomposing a combined signal — for example, of multiple people talking simultaneously — into its independent generating components — for example, the individual separate voices. Two projects could be based on methods for blind source separation, looking at datasets of recorded music.</p>
+
+      <p>The first project would be directly based on looking into methods for “transcribing” audio, and splitting recorded music out into different parts (be it different instruments / performers, or different notes). The talk [1] on youtube does a great job of introducing classic methods and describing recent advances. There is a dataset [2] of piano recordings aligned with transcriptions that could be a good starting point, and the same group has released other such datasets as well. This would provide an opportunity to explore a recently proposed family of deep generative models, related to independent components analysis [3].</p>
+
+      <p>The second option would be based around “multimodal” models, looking at the dataset [4] of different people playing chamber music, including both video and audio. It could be interesting to look at this using some kind of joint modeling — e.g. using multi-modal generative models [5]. The most obvious “tasks” would be seeing (a) how adding the video could improve automatic transcription quality (intuitively, it should help do things like disambiguate who is playing what when…), or (b) how adding video can help with the source separation problem. (There are also some “funny” possibilities, e.g. given a video of people playing, but with the audio muted, try to guess how it sounds….)</p>
+
+      <p>[1] Talk by Paris Smaragdis on non-negative matrix factorization: <a href="https://www.youtube.com/watch?v=wfmpViJIjWw">https://www.youtube.com/watch?v=wfmpViJIjWw</a></p>
+
+      <p>[2] MAESTRO dataset: <a href="https://magenta.tensorflow.org/datasets/maestro">https://magenta.tensorflow.org/datasets/maestro</a></p>
+
+      <p>[3] Variational Autoencoders and Nonlinear ICA: A Unifying Framework, <a href="http://proceedings.mlr.press/v108/khemakhem20a">http://proceedings.mlr.press/v108/khemakhem20a</a></p>
+
+      <p>[4] Multi-Modal Music Performance (URMP) Dataset: <a href="http://www2.ece.rochester.edu/projects/air/projects/URMP.html">http://www2.ece.rochester.edu/projects/air/projects/URMP.html</a></p>
+
+      <p>[5] Variational Mixture-of-Experts Autoencoders for Multi-Modal Deep Generative Models: <a href="https://arxiv.org/abs/1911.03393">https://arxiv.org/abs/1911.03393</a></p>
+
       <h2 id="generating-high-resolution-images-with-coordinate-based-neural-networks">Generating high-resolution images with coordinate-based neural networks</h2>
 
       <p>Most deep generative models for images model individual pixels. In contrast, coordinate-based networks learn a function f(i,j) -&gt; x_{i,j}, which maps directly from <em>pixel indices</em> i, j to the color value of the image at that location. These approaches are particular interesting because they can be evaluated at fractional coordinates for arbitrarily high resolutions! For two interesting artistic examples of this, see [1] and [2].</p>
