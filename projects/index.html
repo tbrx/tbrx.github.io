@@ -46,6 +46,24 @@
 
       <p>If you are a current MSc student at UCL, please email me at <a href="mailto:b.paige@ucl.ac.uk">b.paige@ucl.ac.uk</a> if you are interested in working on the following projects, or would like to discuss some alternative (ideally, something related to one of my <a href="https://scholar.google.com/citations?user=JrFJmx0AAAAJ">publications</a>).</p>
 
+      <h2 id="robust-active-learning">Robust active learning</h2>
+
+      <p><strong>Active learning</strong> is the setting in which labels are collected at the same time a machine learning model is trained, and the machine learning model can help decide which points would be most informative. 
+This can be useful because the data is chosen in a way such that it is expected to be useful for training the model, and allows getting similar predictive performance from fewer labels.
+However, the data you have collected is then no longer independent samples from some underlying population distribution, but instead collected following this algorithmic process.
+An open question is whether or not the labels selected by an active learning algorithm are then equally useful if you were then to take them and use them for training some <em>other</em> model than the one that was used to select the point.
+There’s some work (e.g. [1]). which suggest that active learning can be actively harmful in such settings.</p>
+
+      <p>Bayesian approaches to active learning use the posterior uncertainty over the model parameters to estimate the mutual information between the model parameters and the different possible labels that could be collected [2,3].
+A project on this topic would involve first empirically testing to what extent this problem exists on a handful of models and test problems.
+Questions include: when are the points selected by active learning generally useful for all sorts of models — and when are they not? Does going from a “more complex” to “less complex” model work better, or vice versa? Can we fix this by defining new active learning objectives which explicitly account for generalization to other models, or which are somehow “model agnostic”?</p>
+
+      <p>[1] Practical Obstacles to Deploying Active Learning <a href="https://arxiv.org/abs/1807.04801">https://arxiv.org/abs/1807.04801</a></p>
+
+      <p>[2] [Bayesian active learning by disagreement <a href="https://arxiv.org/abs/1112.5745">https://arxiv.org/abs/1112.5745</a></p>
+
+      <p>[3] [Deep Bayesian active learning with image data <a href="https://arxiv.org/abs/1703.02910">https://arxiv.org/abs/1703.02910</a>.</p>
+
       <h2 id="blind-and-not-so-blind-source-separation">Blind and (not-so-blind) source separation</h2>
 
       <p>The blind source separation problem (or “cocktail party problem”) involves decomposing a combined signal — for example, of multiple people talking simultaneously — into its independent generating components — for example, the individual separate voices. Two projects could be based on methods for blind source separation, looking at datasets of recorded music.</p>
@@ -63,6 +81,21 @@
       <p>[4] Multi-Modal Music Performance (URMP) Dataset: <a href="http://www2.ece.rochester.edu/projects/air/projects/URMP.html">http://www2.ece.rochester.edu/projects/air/projects/URMP.html</a></p>
 
       <p>[5] Variational Mixture-of-Experts Autoencoders for Multi-Modal Deep Generative Models: <a href="https://arxiv.org/abs/1911.03393">https://arxiv.org/abs/1911.03393</a></p>
+
+      <h2 id="stochastic-normalizing-flows">Stochastic normalizing flows</h2>
+
+      <p>Normalizing flows (see review paper [1]) provide a flexible means for defining complex density functions. They take a simple base distribution p(z) and transform it to a more expressive density p(x), by way of a bijective (invertible) deterministic function x = f(z) and making use of the change-of-variables formula.
+However, the restriction to <em>deterministic</em> functions reduces the expressivity. One proposal is to replace it with a stochastic function.</p>
+
+      <p>Two recent quite different papers both consider extensions with stochastic transformations. One considers instead surjective functions, focusing on generative modeling from data, and makes analogies to variational autoencoders [2]. The other aims to learning samplers for unnormalized probability distributions, and works by explicitly introducing Metropolis-Hastings steps into the flow [3]. A goal of this project is to better understand these normalizing flow variants, exploring their modeling capabilities with different choices of deterministic and stochastic functions.</p>
+
+      <p>We can then explore other potentially novel approaches to constructing stochastic flows. One potential option could be to consider a Bayesian treatment of parameters in a deterministic normalizing flow.</p>
+
+      <p>[1] Normalizing Flows for Probabilistic Modeling and Inference, <a href="https://arxiv.org/abs/1912.02762">https://arxiv.org/abs/1912.02762</a></p>
+
+      <p>[2] SurVAE Flows: Surjections to Bridge the Gap between VAEs and Flows, <a href="https://proceedings.neurips.cc/paper/2020/hash/9578a63fbe545bd82cc5bbe749636af1-Abstract.html">https://proceedings.neurips.cc/paper/2020/hash/9578a63fbe545bd82cc5bbe749636af1-Abstract.html</a></p>
+
+      <p>[3] Stochastic Normalizing Flows, <a href="https://proceedings.neurips.cc/paper/2020/hash/9578a63fbe545bd82cc5bbe749636af1-Abstract.html">https://proceedings.neurips.cc/paper/2020/hash/9578a63fbe545bd82cc5bbe749636af1-Abstract.html</a></p>
 
       <h2 id="generating-high-resolution-images-with-coordinate-based-neural-networks">Generating high-resolution images with coordinate-based neural networks</h2>
 
@@ -82,45 +115,7 @@
 
       <p>[5] Hypernetworks, <a href="https://arxiv.org/abs/1609.09106">https://arxiv.org/abs/1609.09106</a></p>
 
-      <h2 id="stochastic-normalizing-flows">Stochastic normalizing flows</h2>
-
-      <p>Normalizing flows (see review paper [1]) provide a flexible means for defining complex density functions. They take a simple base distribution p(z) and transform it to a more expressive density p(x), by way of a bijective (invertible) deterministic function x = f(z) and making use of the change-of-variables formula.
-However, the restriction to <em>deterministic</em> functions reduces the expressivity. One proposal is to replace it with a stochastic function.</p>
-
-      <p>Two recent quite different papers both consider extensions with stochastic transformations. One considers instead surjective functions, focusing on generative modeling from data, and makes analogies to variational autoencoders [2]. The other aims to learning samplers for unnormalized probability distributions, and works by explicitly introducing Metropolis-Hastings steps into the flow [3]. A goal of this project is to better understand these normalizing flow variants, exploring their modeling capabilities with different choices of deterministic and stochastic functions.</p>
-
-      <p>We can then explore other potentially novel approaches to constructing stochastic flows. One potential option could be to consider a Bayesian treatment of parameters in a deterministic normalizing flow.</p>
-
-      <p>[1] Normalizing Flows for Probabilistic Modeling and Inference, <a href="https://arxiv.org/abs/1912.02762">https://arxiv.org/abs/1912.02762</a></p>
-
-      <p>[2] SurVAE Flows: Surjections to Bridge the Gap between VAEs and Flows, <a href="https://proceedings.neurips.cc/paper/2020/hash/9578a63fbe545bd82cc5bbe749636af1-Abstract.html">https://proceedings.neurips.cc/paper/2020/hash/9578a63fbe545bd82cc5bbe749636af1-Abstract.html</a></p>
-
-      <p>[3] Stochastic Normalizing Flows, <a href="https://proceedings.neurips.cc/paper/2020/hash/9578a63fbe545bd82cc5bbe749636af1-Abstract.html">https://proceedings.neurips.cc/paper/2020/hash/9578a63fbe545bd82cc5bbe749636af1-Abstract.html</a></p>
-
-      <h2 id="deep-neural-networks-for-the-schrodinger-equation">Deep Neural Networks for the Schrodinger Equation</h2>
-
-      <p><em>[Co-supervised with Andrea Karlova]</em></p>
-
-      <p>The Schrodinger Equation provides an elegant description of the positions of the electrons in the molecular structures. Despite the fact that the equation has been known for nearly a century, providing the solution, which accurately characterises the wave functions, has remained a challenging task.</p>
-
-      <p>Various numerical approaches have been developed, such as Density Functional Theory, Quantum Monte Carlo, Moller-Plesset Perturbation Theory among others. The computational complexity of the methods varies by a polynomial
-order for a fixed number of electrons in the chemical system with DFT being amongst the fastest having a cubic computational complexity. With an increasing number of the electrons in the atomic structure, the computational complexity becomes in the worst-case
-exponential, making it computationally demanding for investigating chemical systems with heavy elements or chemical systems with a large number of electrons. The ability to improve the computational complexity of these algorithms can significantly speed up
-the discovery of new materials or new drugs.</p>
-
-      <p>Recently, deep neural networks have been used as functional approximators of the solution of the Schrodinger Equation. Two different neural architectures, PauliNet [1] and FermiNet [2], can be used for approximating the
-wave functions ansatz. Combining them with variational quantum Monte Carlo approximation of the energy function, yields a simulation technique which allows for training such a deep network without the requirement of labelled training data. Recently, [3] improved
-performance of FermiNet by simplifying the architecture of the neural net and provided a comparison with PauliNet. The goal of this project is to experiment with different neural architectures approximating the ansatz and approximations of the energy functions via different simulation techniques and compare them with DFT solutions.</p>
-
-      <p>[1] Hermann,
-J., Schätzle, Z. &amp; Noé, F. Deep-neural-network solution of the electronic Schrödinger equation. Nat. Chem. 12, 891–897
-(2020). <a href="https://doi.org/10.1038/s41557-020-0544-y">https://doi.org/10.1038/s41557-020-0544-y</a></p>
-
-      <p>[2] David
-Pfau, James S. Spencer, Alexander G. D. G. Matthews, and W. M. C. Foulkes, Ab inition solution of the many-electron Schrodinger equation with deep neural networks, Phys. Rev. Research 2, <a href="https://arxiv.org/abs/1909.02487">https://arxiv.org/abs/1909.02487</a></p>
-
-      <p>[3] James
-S. Spencer et all., Better, faster Fermionic Neural Networks, <a href="https://arxiv.org/abs/2011.07125">https://arxiv.org/abs/2011.07125</a></p>
+      <p>[6] CocoNet: A deep neural network for mapping pixel coordinates to color values, <a href="https://arxiv.org/abs/1805.11357">https://arxiv.org/abs/1805.11357</a></p>
 
     </div>
   </div>
