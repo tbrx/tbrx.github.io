@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- Note there is no responsive meta tag here -->
+
+        <title>COMP0179 &#58;&#58; Bayesian Deep Learning</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="/css/non-responsive.css" rel="stylesheet">
+
+        <style>
+        .light { font-weight: 200; }
+        h4 { font-size: 21px; margin-top: 1.1em; }
+        .jumbotron { background-color: #DEF; }
+        </style>
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+    </head>
+
+    <body>
+
+    <div class="row">
+  <div class="col-xs-offset-2 col-xs-8">
+
+    <h1 id="comp0179-bayesian-deep-learning">COMP0179: Bayesian Deep Learning</h1>
+
+    <p>Instructor: Brooks Paige<br />
+Syllabus: Fall 2021</p>
+
+    <h2 id="what-is-this-module-who-is-it-for">What is this module? Who is it for?</h2>
+
+    <p>This is a brand-new module which aims to provide an introduction, simultaneously, to two different fields which are central to machine learning: <em>probabilistic modeling</em> and <em>representation learning</em>.</p>
+
+    <p>This module is designed as <strong>an alternative to COMP0090: Introduction to Deep Learning</strong>.
+It’s still an “introductory” module, in the sense that it has no explicit machine learning pre-requisites: we will only assume familiary with calculus, linear algebra, and basic probability.
+That said, we will move fairly quickly.
+Ideally you would have previous exposure to either deep learning, Bayesian inference, or both.</p>
+
+    <p>In contrast to COMP0090, we will generally be more focused on taking a probabilistic view, and will cover some recent / current research topics related to Bayesian inference in neural networks.
+We will probably spend less time than COMP0090 discussing different neural network architectures and deep learning models, and a bit more time on theory.</p>
+
+    <p>Neither this module, nor COMP0090, are <em>applied</em> modules in the traditional sense.
+If your main goal is to learn just enough about deep learning to be able to apply it to other applications, e.g. using high-level frameworks like Keras, you’d probably be better suited with a different module entirely.</p>
+
+    <h2 id="what-will-we-cover">What will we cover?</h2>
+
+    <p>Bayesian deep learning is an active research area.</p>
+
+    <p>In the first part, we’ll cover probabilistic modeling, parameter estimation, and Bayesian inference — first looking at classic statistical models, but with an eye towards machine learning applications.
+<!---
+We'll also cover aspects related to model selection, and briefly introduce Gaussian processes.
+-->
+We’ll build on this with an introduction to deep learning, where highly-parameterized models can be used to define flexible feature representations.
+In this second part of the module, we’ll cover automatic differentiation, optimization, and some standard neural network architectures.
+We’ll then spend a while discussing the challenges, common approaches, and potential benefits of performing Bayesian inference over the parameters in a deep learning model.
+Finally, we’ll end with an overview of some more advanced topics and current research, including learning deep generative models.</p>
+
+    <!---
+We'll particularly focus on looking at how taking a probabilistic approach to machine learning makes it easy to define models which are a good fit for our data, and allow quantification of uncertainty in our predictions.
+-->
+
+    <h3 id="scheduling">Scheduling</h3>
+
+    <p>The module will be set up with ~2 hrs of weekly lectures, pre-recorded and delivered asynchronously online.
+On Friday, there will be in-person small group discussion sections which we can use for discussion, questions, and follow-up.
+The Moodle page will also be open for discussion: particularly interesting or challenging points that are brought up on the Moodle forums can also help form the basis for questions and discussions in the Friday sections.</p>
+
+    <p>There’s additionally an office hour scheduled, online, for 5pm on Thursdays.
+The TAs and myself will be present, and open for discussion of any issues or challenges you’re having with the material.</p>
+
+    <h3 id="textbooks-and-references">Textbooks and references</h3>
+
+    <p>There is no single required textbook, but we will refer to sections from each of the following:</p>
+
+    <ul>
+      <li><strong>Deep Learning</strong>, Ian Goodfellow, Yoshua Bengio, and Aaron Courville. [<a href="https://www.deeplearningbook.org">Available online</a>]</li>
+      <li><strong>Pattern Recognition and Machine Learning</strong>, Chris Bishop. [<a href="https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/">Available online</a>]</li>
+      <li><strong>Information Theory, Inference, and Learning Algorithms</strong>, David MacKay. [<a href="http://www.inference.org.uk/mackay/itila/book.html">Available online</a>]</li>
+    </ul>
+
+    <p>One thing to note is that all these textbooks are freely available on the internet.
+There’s a bit of overlap in material, and often it’s helpful to read the same material multiple times, as covered by different authors or from different angles.
+Book chapters will be linked each week, and will augmented the material that is covered in the lecture slides / lecture notes.
+For some of the later sections, we’ll also link other suggested outside readings (e.g. review articles, research papers, blog posts).</p>
+
+    <p>All core material that you will be responsible for for the exam will be explicitly mentioned as such in the lecture slides / notes (more details on this below).</p>
+
+    <h3 id="course-outline">Course outline</h3>
+
+    <p>Our schedule is roughly as follows:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Date</th>
+          <th>Description</th>
+          <th>References (Slides added later)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Week 1</td>
+          <td>Oct 8</td>
+          <td>Introduction to machine learning; probability and linear algebra background</td>
+          <td>Bishop, Chapter 1, 1.1–1.4; <br />Deep Learning, Chapters 2-5</td>
+        </tr>
+        <tr>
+          <td>Week 2</td>
+          <td>Oct 15</td>
+          <td>Probability distributions; graphical models;  maximum likelihood estimation; conjugate priors</td>
+          <td>Bishop, Chapter 2, 2.1–2.4; <br />Deep Learning, Chapter 3; <br />MacKay, Chapters 2-3</td>
+        </tr>
+        <tr>
+          <td>Week 3</td>
+          <td>Oct 22</td>
+          <td>Linear models for regression and classification; Bayesian inference in shallow models: Laplace approximations; Monte Carlo methods</td>
+          <td>Bishop, Chapters 3-4; <br />MacKay, Chapter 27, 39, 41</td>
+        </tr>
+        <tr>
+          <td>Week 4</td>
+          <td>Oct 29</td>
+          <td>Feature spaces; Gaussian processes; Bayesian Occam’s razor; Hamiltonian Monte Carlo</td>
+          <td>Bishop, Chapters 3-4; <br />MacKay, Chapters 28-30; <br />Rasmussen &amp; Williams, <a href="http://www.gaussianprocess.org/gpml/chapters/RW2.pdf">GPML Ch. 2</a></td>
+        </tr>
+        <tr>
+          <td>Week 5</td>
+          <td>Nov 5</td>
+          <td>Automatic differentiation and backprop; variational inference; non-convex optimization</td>
+          <td>Deep Learning, Chapter 6; 8.1-8.5 <br />Bishop, Chapter 10 (10.1 only); <br />Kucukelbir et al., <a href="https://jmlr.org/papers/v18/16-107.html">Automatic Differentiation Variational Inference</a>; <br />Baydin et. al: <a href="https://arxiv.org/abs/1502.05767v4">Automatic differentiation in machine learning: a survey</a></td>
+        </tr>
+        <tr>
+          <td>Reading week</td>
+          <td> </td>
+          <td>(No meeting)</td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>Week 6</td>
+          <td>Nov 19</td>
+          <td>Multi-layer feedforward networks; convolutional networks; recurrent networks</td>
+          <td>Bishop, Chapter 5, 5.1–5.3; <br />Deep Learning, Chapters 9 &amp; 10</td>
+        </tr>
+        <tr>
+          <td>Week 7</td>
+          <td>Nov 26</td>
+          <td>Regularization; alternatives to maximum likelihood estimation; applications and demos</td>
+          <td>Bishop, Chapter 5, 5.4, 5.5, 5.7; <br />Deep Learning, Chapters 7, 11-12</td>
+        </tr>
+        <tr>
+          <td>Week 8</td>
+          <td>Dec 3</td>
+          <td>Loss landscapes in neural networks; ensembles and Bayesian model averaging; stochastic gradient MCMC; recent research overview</td>
+          <td>Deep Learning, Chapter 8; <br />Mandt et al., <a href="https://arxiv.org/abs/1704.04289">Stochastic Gradient Descent as Approximate Bayesian Inference</a>; <br />Gal &amp; Ghahramani, <a href="http://proceedings.mlr.press/v48/gal16.html">Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning</a>;<br />Lakshminarayanan et al., <a href="https://proceedings.neurips.cc/paper/2017/hash/9ef2ed4b7fd2c810847ffa5fa85bce38-Abstract.html">Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles</a>; <br />Fort et al., <a href="https://arxiv.org/abs/1912.02757">Deep Ensembles: A Loss Landscape Perspective</a>; <br />Wilson &amp; Izmailov, <a href="https://papers.nips.cc/paper/2020/hash/322f62469c5e3c7dc3e58f5a4d1ea399-Abstract.html">Bayesian Deep Learning and a Probabilistic Perspective of Generalization</a></td>
+        </tr>
+        <tr>
+          <td>Week 9</td>
+          <td>Dec 10</td>
+          <td>Principal components analysis; deep generative models</td>
+          <td>Deep Learning, Chapters 13 and 14; <br />Kingma &amp; Welling, <a href="https://arxiv.org/abs/1906.02691">An Introduction to Variational Autoencoders</a></td>
+        </tr>
+        <tr>
+          <td>Week 10</td>
+          <td>Dec 17</td>
+          <td>Semi-supervised learning; stochastic computation graphs; deep probabilistic programs</td>
+          <td>Deep Learning, Chapter 16; <br />Schulman et al., <a href="https://arxiv.org/abs/1506.05254">Gradient Estimation Using Stochastic Computation Graphs</a> <br /> Kingma et al., <a href="https://arxiv.org/abs/1406.5298">Semi-Supervised Learning with Deep Generative Models</a>; <br /> Pyro PPL <a href="https://docs.pyro.ai/en/stable/">pyro.ai</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="assignments">Assignments</h3>
+
+    <p>There are two courseworks, each worth 25% of the overall grade.
+The first one will primarily cover inference material from weeks 1 through 5;
+the second one will primarily cover deep learning material from weeks 6 onward.
+There is a three-hour, open-book / open-notes final exam which represents the other 50% of the grade.
+For the exam, note that you are only expected to know material which is covered in the lecture material, not all the material from the referenced book chapters.
+More detail on assignments will be found on the Moodle page.</p>
+
+    <p>N.B.: for the UCL MSc programs a “Distinction” (the highest attainable mark) corresponds to a numeric score of 70% overall, or higher.
+A 50% mark is required to pass.
+It is not expected to be able to receive a perfect score on all assignments or on the exam.</p>
+
+  </div>
+</div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-50547851-1', 'ox.ac.uk');
+      ga('send', 'pageview');
+
+    </script>
+    </body>
+</html>
