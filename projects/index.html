@@ -44,29 +44,57 @@
 
       <p><a href="../">Back to main page</a></p>
 
-      <p>If you are a current MSc student at UCL, please email me at <a href="mailto:b.paige@ucl.ac.uk">b.paige@ucl.ac.uk</a> if you are interested in working on the following projects, or would like to discuss some alternative (ideally, something related to one of my <a href="https://scholar.google.com/citations?user=JrFJmx0AAAAJ">publications</a>).</p>
+      <p>If you are a current MSc student at UCL, please email me at <a href="b.paige@ucl.ac.uk">b.paige@ucl.ac.uk</a>, regarding these, or to propose any other project topic (particularly if something related to one of my <a href="https://scholar.google.co.uk/citations?user=JrFJmx0AAAAJ&amp;hl=en&amp;oi=ao">publications</a>…)!</p>
 
-      <h2 id="deep-neural-networks-for-density-functional-theory">Deep Neural Networks for Density Functional Theory</h2>
+      <h2 id="fine-tuning-protein-language-models-with-experimental-feedback">Fine-tuning protein language models with experimental feedback</h2>
 
-      <p>The Schrodinger Equation provides an elegant description of the positions of the electrons in the molecular structures.
-Despite the fact that the equation has been known for nearly a century, providing the solution, which accurately characterises the wave functions, has remained a challenging task.
-Various numerical approaches have been developed, such as Density Functional Theory (DFT), Quantum Monte Carlo, Moller-Plesset Perturbation Theory among others.
-The computational complexity of the methods varies by a polynomial order for a fixed number of electrons in the chemical system with DFT being amongst the fastest having a cubic computational complexity.
-The ability to improve the computational complexity of these algorithms can significantly speed up the discovery of new materials or new drugs.</p>
+      <p><em>(With Alex Hawkins-Hooker)</em></p>
 
-      <p>Unfortunately, due to various simplifying assumptions DFT is often innacurate.
-Recent work [1,2] has applied machine learning methods to directly learn a correction factor, the <em>exchange correlation functional</em>, which captures higher-order interactions between electrons, 
-or alternately has directly predicted energy solutions [3].
-These approaches are fairly simple, with limited ability to generalize to new structures.
-A project can focus on a few different aspects; this includes developing more appropriate architectures (including graph neural networks), as well as exploring alternative training regimes (in particular, employing meta-learning [4]) to directly address concerns of generalization.</p>
+      <p>In parallel to recent advances in large language models trained on web-scale text data, there has been considerable interest in training protein-specific ‘language’ models (PLMs) on the hundreds of millions of protein sequences available in public databases [1]. Similar to their natural language counterparts, these protein language models can be used to generate new proteins [2], or fine-tuned to perform supervised tasks such as structure prediction or property prediction. This project seeks to explore how to use fine-tuning to improve protein language model performance on one such task: the prediction of the effects of mutations on protein function. This task is of central importance in protein design for therapeutic or biotechnological applications, where it is often desirable to engineer some natural protein to improve some property (such as the affinity of an antibody for its target). The likelihoods of pretrained language models are strong zero-shot predictors of these mutation effects [3], because by learning the distribution of natural protein sequences, they learn implicit constraints on protein function that have been selected for during evolution. Where available, these predictions can be further improved by fine-tuning on datasets of experimentally determined mutation effects specific to the protein of interest [4]. However there has to date been relatively little work on whether fine-tuning on mutation effect data from multiple proteins can lead to improved zero-shot performance on proteins for which experimental data may not be available. The recent publication of the ProteinGym benchmark [5], a carefully curated set of experimental mutation effect datasets from a large number of natural proteins, provides an ideal testing ground for testing this approach. A natural starting point for the project would be to extend a fine-tuning strategy that has successfully been applied when working with mutation effect data from a single protein to this multi-protein setting, and assessing the degree of generalisation that is achieved. The project would then aim to address questions around what kinds of fine-tuning strategy most effectively promote generalisation, e.g. should we use some form of ‘prompt tuning’ or ‘instruction tuning’ by supplying or learning representations of task type (e.g. some of the mutation effect datasets specifically measure stability, while others measure other properties such as strength of binding to some target protein)? Are methods like direct preference optimisation [6] that have proved popular in fine-tuning large language models also applicable in this setting? Which classes of protein language models are most suitable (e.g. structure-conditioned vs sequence-based models) in this setting?</p>
 
-      <p>[1] Machine learning accurate exchange and correlation functionals of the electronic density <a href="https://www.nature.com/articles/s41467-020-17265-7">https://www.nature.com/articles/s41467-020-17265-7</a></p>
+      <p>No biological background is required for this project; an interest in language models and a curiosity about proteins would suffice! Because of the limited number of datasets in the ProteinGym benchmark, computational requirements should not be very large, so this is an opportunity to experiment with language models without vast resources.</p>
 
-      <p>[2] Highly accurate and constrained density functional obtained with differentiable programming <a href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.104.L161109">https://journals.aps.org/prb/abstract/10.1103/PhysRevB.104.L161109</a></p>
+      <p>[1] Rives et al., Biological structure and function emerge from scaling unsupervised learning to 250 million protein sequences, PNAS, 2021, <a href="https://www.pnas.org/doi/10.1073/pnas.2016239118">https://www.pnas.org/doi/10.1073/pnas.2016239118</a></p>
 
-      <p>[3] OrbNet: Deep learning for quantum chemistry using symmetry-adapted atomic-orbital features <a href="https://aip.scitation.org/doi/10.1063/5.0021955">https://aip.scitation.org/doi/10.1063/5.0021955</a></p>
+      <p>[2] Madani et al., Large language models generate functional protein sequences across diverse families, Nature Biotechnology, 2023, <a href="https://www.nature.com/articles/s41587-022-01618-2">https://www.nature.com/articles/s41587-022-01618-2</a></p>
 
-      <p>[4] Meta-Learning in Neural Networks: A Survey <a href="https://arxiv.org/abs/2004.05439">https://arxiv.org/abs/2004.05439</a></p>
+      <p>[3] Meier et al, Language models enable zero-shot prediction of the effects of mutations on protein function. NeurIPS, 2021. <a href="https://openreview.net/forum?id=uXc42E9ZPFs">https://openreview.net/forum?id=uXc42E9ZPFs</a></p>
+
+      <p>[4] ProteinGym: Large–scale benchmarks for protein fitness prediction and design, NeurIPS, 2023. <a href="https://openreview.net/forum?id=URoZHqAohf">https://openreview.net/forum?id=URoZHqAohf</a></p>
+
+      <p>[5] Notin et al., Improving protein property prediction and design with non-parametric transformers, NeurIPS, 2023. <a href="https://openreview.net/forum?id=AwzbQVuDBk">https://openreview.net/forum?id=AwzbQVuDBk</a></p>
+
+      <p>[6] Rafailov et al., Direct preference optimization: your language model is secretly a reward model, NeurIPS, 2023. <a href="https://openreview.net/forum?id=HPuSIXJaa9">https://openreview.net/forum?id=HPuSIXJaa9</a></p>
+
+      <h2 id="sequential-monte-carlo-approaches-for-diffusion-models-and-language-models">Sequential Monte Carlo approaches for diffusion models and language models</h2>
+
+      <p><em>(With Alex Hawkins-Hooker and Andrea Karlova)</em></p>
+
+      <p>Sequential Monte Carlo (SMC) methods [1] can sample from intractable distributions by sequentially sampling from simpler distributions. Current popular deep generative models including diffusions and score-based generative models [2,3], and transformers and other GPT-styla language models [3] are fundamentally sequential methods, either directly (for language models) or in terms of iterative refinement (for diffusions). Some recent work [5] has explored the use of SMC methods for ad-hoc conditioning of diffusion models to satisfy particular constraints, for example conditioning generated samples to have a particular value under an existing classifier model. We (me and two PhD students) have a few ideas of projects related to using SMC for conditional sampling of diffusion models for molecular docking, and for protein design using large language models over protein sequences. If you are interested in these topics please reach out and we can discuss further.</p>
+
+      <p>[1] Sequential Monte Carlo Samplers <a href="https://academic.oup.com/jrsssb/article/68/3/411/7110641">https://academic.oup.com/jrsssb/article/68/3/411/7110641</a></p>
+
+      <p>[2] Blog post introducing diffusion models: <a href="https://lilianweng.github.io/posts/2021-07-11-diffusion-models/">https://lilianweng.github.io/posts/2021-07-11-diffusion-models/</a></p>
+
+      <p>[3] Blog post introducing score-based generative models: <a href="https://yang-song.net/blog/2021/score/">https://yang-song.net/blog/2021/score/</a></p>
+
+      <p>[4] Attention is all you need <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a></p>
+
+      <p>[5] Practical and Asymptotically Exact Conditional Sampling in Diffusion Models <a href="https://arxiv.org/abs/2306.17775">https://arxiv.org/abs/2306.17775</a></p>
+
+      <h2 id="diffdock-pocket-enhanced-with-protein-ligand-interactions">DiffDock-Pocket enhanced with Protein-Ligand Interactions</h2>
+
+      <p><em>(With Andrea Karlova)</em></p>
+
+      <p>The DiffDock-Pocket is new diffusion model used for molecular docking sampling. The contemporary diffusion models allowed mainly for blind docking, thus were lacking the ability to predict the molecular pose into the specific pocket. This design inconvenience has been recently overcome by DiffDock-Pocket which incorporate prior knowledge of the docking pocket.</p>
+
+      <p>The existing diffusion models also mostly focus on incorporating protein-ligand interaction information solely in the reverse process, and neglect the interactions in the forward process. It has been argued that this inconsistency between forward and reverse processes may impair the binding affinity of generated molecules towards target protein.</p>
+
+      <p>The goal of this project is investigate how well is the DiffDock-Pocket model capable to structures with realistic  protein-ligand interactions and benchmark its computational  performance and potential advanteges against the existing docking algorithms.</p>
+
+      <p>[1] Blog post introducing diffusion models: <a href="https://lilianweng.github.io/posts/2021-07-11-diffusion-models/">https://lilianweng.github.io/posts/2021-07-11-diffusion-models/</a></p>
+
+      <p>[2] Plainer et al. 2023: DiffDock-Pocket: Diffusion for Pocket-Level Docking with SideChain Flexibility <a href="https://www.mlsb.io/papers_2023/DiffDock-Pocket_Diffusion_for_Pocket-Level_Docking_with_Sidechain_Flexibility.pdf">https://www.mlsb.io/papers_2023/DiffDock-Pocket_Diffusion_for_Pocket-Level_Docking_with_Sidechain_Flexibility.pdf</a></p>
 
       <h2 id="semi-supervised-active-learning-robust-active-learning">Semi-Supervised Active Learning; Robust Active Learning</h2>
 
@@ -99,23 +127,6 @@ Questions include: when are the points selected by active learning generally use
 
       <p>[5] Practical Obstacles to Deploying Active Learning <a href="https://arxiv.org/abs/1807.04801">https://arxiv.org/abs/1807.04801</a></p>
 
-      <h2 id="data-driven-weather-forecasting">Data-driven weather forecasting</h2>
-
-      <p>Most weather forecasting is currently done using physics-based models (derived from first principles), not machine learning models (learned from data).
-There is a recent “challenge dataset” released, as part of the WeatherBench project [1,2]
-The paper [2] includes an overview of a number of recent papers proposing deep learning approaches,
-and the repo includes a suggestion of various baselines (incl. climatology models) at predicting the weather a few days out.
-While perhaps the “obvious” thing to do here is to focus on developing architectures, or selecting machine learning models, which then perform well against the benchmark,
-I think there are actually a number of questions here which a project could focus on.
-In particular, there are issues related to direct prediction at different lead times, vs using machine learning to learn an approximation of the dynamics, which could then be iterated.
-(The later has a more obvious physical interpretation, but is prone to accumulating numeric error.)
-There’s also a lot of room open for developing “hybrid” approaches which incorporate both standard climate modeling and machine learning.
-If you are interested in this area we can go through the paper together and discuss some options.</p>
-
-      <p>[1] WeatherBench: A benchmark dataset for data-driven weather forecasting <a href="https://arxiv.org/abs/2002.00469">https://arxiv.org/abs/2002.00469</a></p>
-
-      <p>[2] Github repo <a href="https://github.com/pangeo-data/WeatherBench">https://github.com/pangeo-data/WeatherBench</a></p>
-
       <h2 id="blind-and-not-so-blind-source-separation">Blind and (not-so-blind) source separation</h2>
 
       <p>The blind source separation problem (or “cocktail party problem”) involves decomposing a combined signal — for example, of multiple people talking simultaneously — into its independent generating components — for example, the individual separate voices. Two projects could be based on methods for blind source separation, looking at datasets of recorded music.</p>
@@ -133,26 +144,6 @@ If you are interested in this area we can go through the paper together and disc
       <p>[4] Multi-Modal Music Performance (URMP) Dataset: <a href="http://www2.ece.rochester.edu/projects/air/projects/URMP.html">http://www2.ece.rochester.edu/projects/air/projects/URMP.html</a></p>
 
       <p>[5] Variational Mixture-of-Experts Autoencoders for Multi-Modal Deep Generative Models: <a href="https://arxiv.org/abs/1911.03393">https://arxiv.org/abs/1911.03393</a></p>
-
-      <h2 id="generating-high-resolution-images-with-coordinate-based-neural-networks">Generating high-resolution images with coordinate-based neural networks</h2>
-
-      <p>Most deep generative models for images model individual pixels. In contrast, coordinate-based networks learn a function f(i,j) -&gt; x_{i,j}, which maps directly from <em>pixel indices</em> i, j to the color value of the image at that location. These approaches are particular interesting because they can be evaluated at fractional coordinates for arbitrarily high resolutions! For two interesting artistic examples of this, see [1] and [2].</p>
-
-      <p>Recent work [3] introduces a positional encoding scheme using Fourier features which seems to be able to capture high-frequency information accurately, leading to high-resolution photorealistic reconstructions of images.</p>
-
-      <p>However, these models are still fit to only a single image! Naively, each image is encoded by a separate function, i.e. by a separate network. The goal of this project is to explore ways of developing these coordinate-based networks into generative models that can produce a range of images, without sacrificing image quality. There are a few options here: one is to consider a latent variable model, e.g. [4], as a way of introducing an additional “context” vector beyond the i, j coordinates into the network; another is to consider explicitly learning distributions over network weights, or even other deep networks which output network weights of the coordinate-based network (as in [5]).</p>
-
-      <p>[1] <a href="https://blog.otoro.net/2016/03/25/generating-abstract-patterns-with-tensorflow/">https://blog.otoro.net/2016/03/25/generating-abstract-patterns-with-tensorflow/</a></p>
-
-      <p>[2] <a href="https://blog.otoro.net/2016/04/01/generating-large-images-from-latent-vectors/">https://blog.otoro.net/2016/04/01/generating-large-images-from-latent-vectors/</a></p>
-
-      <p>[3] Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains, <a href="https://proceedings.neurips.cc/paper/2020/hash/55053683268957697aa39fba6f231c68-Abstract.html">https://proceedings.neurips.cc/paper/2020/hash/55053683268957697aa39fba6f231c68-Abstract.html</a></p>
-
-      <p>[4] Auto-encoding variational Bayes, <a href="https://arxiv.org/abs/1312.6114v10">https://arxiv.org/abs/1312.6114v10</a></p>
-
-      <p>[5] Hypernetworks, <a href="https://arxiv.org/abs/1609.09106">https://arxiv.org/abs/1609.09106</a></p>
-
-      <p>[6] CocoNet: A deep neural network for mapping pixel coordinates to color values, <a href="https://arxiv.org/abs/1805.11357">https://arxiv.org/abs/1805.11357</a></p>
 
     </div>
   </div>
